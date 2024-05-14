@@ -23,7 +23,7 @@ public class EditoraController {
     EditoraService editoraService;
 
     @GetMapping
-    public ResponseEntity<List<Editora>> resgataPerfis() {
+    public ResponseEntity<List<Editora>> findAll() {
         return new ResponseEntity<>(editoraService.findAll(), HttpStatus.OK);
     }
 
@@ -38,7 +38,7 @@ public class EditoraController {
         }
     }
     @PostMapping
-    public ResponseEntity<Editora> criaPerfil(@RequestBody Editora editora) {
+    public ResponseEntity<Editora> save(@RequestBody Editora editora) {
         return new ResponseEntity<>(editoraService.save(editora), HttpStatus.CREATED);
     }
 
@@ -48,7 +48,7 @@ public class EditoraController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Editora> deletaPerfil(@PathVariable Integer id) {
+    public ResponseEntity<Editora> delete(@PathVariable Integer id) {
     	Editora editora = editoraService.findById(id);
         if (editora == null){
             return new ResponseEntity<>(editora, HttpStatus.NOT_FOUND);

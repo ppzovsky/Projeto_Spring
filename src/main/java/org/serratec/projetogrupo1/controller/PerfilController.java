@@ -17,7 +17,7 @@ public class PerfilController {
     PerfilService perfilService;
 
     @GetMapping
-    public ResponseEntity<List<Perfil>> resgataPerfis() {
+    public ResponseEntity<List<Perfil>> findAll() {
         return new ResponseEntity<>(perfilService.findAll(), HttpStatus.OK);
     }
 
@@ -32,7 +32,7 @@ public class PerfilController {
         }
     }
     @PostMapping
-    public ResponseEntity<Perfil> criaPerfil(@RequestBody Perfil perfil) {
+    public ResponseEntity<Perfil> save(@RequestBody Perfil perfil) {
         return new ResponseEntity<>(perfilService.save(perfil), HttpStatus.CREATED);
     }
 
@@ -47,7 +47,7 @@ public class PerfilController {
     }*/
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Perfil> deletaPerfil(@PathVariable Integer id) {
+    public ResponseEntity<Perfil> delete(@PathVariable Integer id) {
         Perfil perfil = perfilService.findById(id);
         if (perfil == null){
             return new ResponseEntity<>(perfil, HttpStatus.NOT_FOUND);

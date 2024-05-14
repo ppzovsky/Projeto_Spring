@@ -16,7 +16,7 @@ public class EmprestimoController {
     EmprestimoService emprestimoService;
 
     @GetMapping
-    public ResponseEntity<List<Emprestimo>> resgataEmprestimos() {
+    public ResponseEntity<List<Emprestimo>> findAll() {
         return new ResponseEntity<>(emprestimoService.findAll(), HttpStatus.OK);
     }
 
@@ -31,7 +31,7 @@ public class EmprestimoController {
         }
     }
     @PostMapping
-    public ResponseEntity<Emprestimo> novoEmprestimo(@RequestBody Emprestimo emprestimo) {
+    public ResponseEntity<Emprestimo> save(@RequestBody Emprestimo emprestimo) {
         return new ResponseEntity<>(emprestimoService.save(emprestimo), HttpStatus.CREATED);
     }
 
@@ -41,7 +41,7 @@ public class EmprestimoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Emprestimo> excluiEmprestimo(@PathVariable Integer id) {
+    public ResponseEntity<Emprestimo> delete(@PathVariable Integer id) {
         Emprestimo emprestimo = emprestimoService.findById(id);
         if (emprestimo == null){
             return new ResponseEntity<>(emprestimo, HttpStatus.NOT_FOUND);

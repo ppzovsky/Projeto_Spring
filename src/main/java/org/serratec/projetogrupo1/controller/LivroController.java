@@ -23,7 +23,7 @@ public class LivroController {
     LivroService livroService;
 
     @GetMapping
-    public ResponseEntity<List<Livro>> resgataPerfis() {
+    public ResponseEntity<List<Livro>> findAll() {
         return new ResponseEntity<>(livroService.findAll(), HttpStatus.OK);
     }
 
@@ -38,7 +38,7 @@ public class LivroController {
         }
     }
     @PostMapping
-    public ResponseEntity<Livro> criaPerfil(@RequestBody Livro livro) {
+    public ResponseEntity<Livro> save(@RequestBody Livro livro) {
         return new ResponseEntity<>(livroService.save(livro), HttpStatus.CREATED);
     }
 
@@ -48,7 +48,7 @@ public class LivroController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Livro> deletaPerfil(@PathVariable Integer id) {
+    public ResponseEntity<Livro> delete(@PathVariable Integer id) {
         Livro livro = livroService.findById(id);
         if (livro == null){
             return new ResponseEntity<>(livro, HttpStatus.NOT_FOUND);

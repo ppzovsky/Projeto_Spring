@@ -16,7 +16,7 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> resgataPerfis() {
+    public ResponseEntity<List<Usuario>> findAll() {
         return new ResponseEntity<>(usuarioService.findAll(), HttpStatus.OK);
     }
 
@@ -31,7 +31,7 @@ public class UsuarioController {
         }
     }
     @PostMapping
-    public ResponseEntity<Usuario> criaPerfil(@RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> save(@RequestBody Usuario usuario) {
         return new ResponseEntity<>(usuarioService.save(usuario), HttpStatus.CREATED);
     }
 
@@ -41,7 +41,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Usuario> deletaPerfil(@PathVariable Integer id) {
+    public ResponseEntity<Usuario> delete(@PathVariable Integer id) {
         Usuario usuario = usuarioService.findById(id);
         if (usuario == null){
             return new ResponseEntity<>(usuario, HttpStatus.NOT_FOUND);

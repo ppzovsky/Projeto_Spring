@@ -24,7 +24,7 @@ public class AlunoController {
 	AlunoService alunoService;
 
 	@GetMapping
-	public ResponseEntity<List<Aluno>> resgataAlunos() {
+	public ResponseEntity<List<Aluno>> findAll() {
 		return new ResponseEntity<>(alunoService.findAll(), HttpStatus.OK);
 	}
 
@@ -39,7 +39,7 @@ public class AlunoController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Aluno> criarAluno(@RequestBody Aluno aluno) {
+	public ResponseEntity<Aluno> save(@RequestBody Aluno aluno) {
 		return new ResponseEntity<>(alunoService.save(aluno), HttpStatus.CREATED);
 	}
 
@@ -49,7 +49,7 @@ public class AlunoController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Aluno> deletaPerfil(@PathVariable Integer id) {
+	public ResponseEntity<Aluno> delete(@PathVariable Integer id) {
 		Aluno aluno = alunoService.findById(id);
 		if (aluno == null) {
 			return new ResponseEntity<>(aluno, HttpStatus.NOT_FOUND);
