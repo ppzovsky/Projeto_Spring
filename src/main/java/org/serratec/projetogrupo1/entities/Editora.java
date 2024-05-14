@@ -32,7 +32,7 @@ public class Editora {
     @Column(name = "imagem_url")
     private String imagem_url;
     
-    @OneToMany(mappedBy = "livro")
+    @OneToMany(mappedBy = "editora")
     @JsonIgnore
     private List<Livro> livros;
 

@@ -1,8 +1,7 @@
 package org.serratec.projetogrupo1.entities;
 
-import java.time.Instant;
+import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -25,19 +24,15 @@ public class Livro {
 	private String nomeLivro;
 	@Column(name = "nome_autor")
 	private String nomeAutor;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'00:00:00'Z'", timezone = "GMT")
 	@Column(name = "data_lancamento")
-	private Instant dataLancamento;
+	private LocalDate dataLancamento;
 	@Column(name = "codigo_isbn")
 	private Integer codigoIsbn;
 	
-//	@ManyToOne
-//    @JoinColumn(name="editora_id")
-//	@JsonIgnore
-//    private Editora editora;
-//	@OneToMany(mappedBy = "perfil")
-//    @JsonIgnore
-//    private List<Emprestimo> usuarios;
+	@ManyToOne
+    @JoinColumn(name="editora_id")
+	@JsonIgnore
+    private Editora editora;
 	
 	public Livro() {
 	}
@@ -66,11 +61,11 @@ public class Livro {
 		this.nomeAutor = nomeAutor;
 	}
 
-	public Instant getDataLancamento() {
+	public LocalDate getDataLancamento() {
 		return dataLancamento;
 	}
 
-	public void setDataLancamento(Instant dataLancamento) {
+	public void setDataLancamento(LocalDate dataLancamento) {
 		this.dataLancamento = dataLancamento;
 	}
 
