@@ -47,11 +47,6 @@ public class EditoraController {
         return new ResponseEntity<>(editoraService.update(editora), HttpStatus.OK);
     }
 
-    /*@DeleteMapping("/{id}")  retorna uma string de aviso
-    public ResponseEntity<String> deletaPerfil(@PathVariable Integer id) {
-        return new ResponseEntity<>(perfilService.delete(id), HttpStatus.OK);
-    }*/
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Editora> deletaPerfil(@PathVariable Integer id) {
     	Editora editora = editoraService.findById(id);

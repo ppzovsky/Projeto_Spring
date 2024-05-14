@@ -29,19 +29,6 @@ public class EditoraService {
         return editoraRepository.save(editora);
     }
 
-    /*public String delete(Integer id){
-        if(perfilRepository.existsById(id) == true) {
-         Perfil excluir = perfilRepository.findById(id).orElse(null);
-            try{
-                perfilRepository.deleteById(id);
-                return excluir.toString()+ "\nDELETADO COM SUCESSO";
-            }catch (Exception e){
-                System.out.println(e);
-                return "ERRO AO EXCLUIR";
-            }
-        return "PERFIL NAO ENCONTRADO!";
-    }*/
-
     public Editora delete(Integer id){
         if(editoraRepository.existsById(id) == true) {
             Editora excluir = editoraRepository.findById(id).orElse(null);

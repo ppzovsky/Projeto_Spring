@@ -1,17 +1,11 @@
 package org.serratec.projetogrupo1.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "livro")
@@ -33,6 +27,9 @@ public class Livro {
     @JoinColumn(name="editora_id")
 	@JsonIgnore
     private Editora editora;
+
+	@OneToMany(mappedBy = "livroId")
+	private List<Emprestimo> emprestimos;
 	
 	public Livro() {
 	}
@@ -76,5 +73,20 @@ public class Livro {
 	public void setCodigoIsbn(Integer codigoIsbn) {
 		this.codigoIsbn = codigoIsbn;
 	}
-	
+
+	public Editora getEditora() {
+		return editora;
+	}
+
+	public void setEditora(Editora editora) {
+		this.editora = editora;
+	}
+
+	public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+
+	public void setEmprestimos(List<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
+	}
 }

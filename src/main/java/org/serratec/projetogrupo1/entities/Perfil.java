@@ -60,14 +60,4 @@ public class Perfil {
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
-
-    @Override
-    public String toString() {
-        return "Perfil{" +
-                "\nperfilId= " + perfilId +
-                "\nnome= " + nome +
-                "\ndescricao= " + descricao +
-                '}';
-    }
-
 }

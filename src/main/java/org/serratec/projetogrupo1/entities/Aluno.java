@@ -1,17 +1,13 @@
 package org.serratec.projetogrupo1.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "perfil")
-public class Aluno {
+public class 	Aluno {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "aluno_matricula")
@@ -40,6 +36,9 @@ public class Aluno {
 
 	@Column(name = "cidade")
 	private String cidade;
+
+	@OneToMany(mappedBy = "alunoMatricula")
+	private List<Emprestimo> emprestimos;
 
 	public Aluno() {
 	}
@@ -129,4 +128,11 @@ public class Aluno {
 		this.cidade = cidade;
 	}
 
+	public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+
+	public void setEmprestimos(List<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
+	}
 }
