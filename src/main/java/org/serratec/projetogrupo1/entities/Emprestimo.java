@@ -14,10 +14,10 @@ public class Emprestimo {
     private int idEmprestimo;
     @ManyToOne
     @JoinColumn (name = "aluno_matricula")
-    private int alunoMatricula;
+    private Aluno alunoMatricula;
     @ManyToOne
     @JoinColumn (name = "livro_id")
-    private int livroId;
+    private Livro livroId;
     @Column(name = "data_emprestimo")
     private LocalDate dataEmprestimo;
     @Column(name = "data_entrega")
@@ -25,7 +25,7 @@ public class Emprestimo {
     @Column(name = "valor_emprestimo")
     private double valorEmprestimo;
 
-    public Emprestimo(int idEmprestimo, int alunoMatricula, int livroId, LocalDate dataEmprestimo, LocalDate dataDevolucao, double valorEmprestimo) {
+    public Emprestimo(int idEmprestimo, Aluno alunoMatricula, Livro livroId, LocalDate dataEmprestimo, LocalDate dataDevolucao, double valorEmprestimo) {
         this.idEmprestimo = idEmprestimo;
         this.alunoMatricula = alunoMatricula;
         this.livroId = livroId;
@@ -44,19 +44,19 @@ public class Emprestimo {
         this.idEmprestimo = idEmprestimo;
     }
 
-    public int getAlunoMatricula() {
+    public Aluno getAlunoMatricula() {
         return alunoMatricula;
     }
 
-    public void setAlunoMatricula(int alunoMatricula) {
+    public void setAlunoMatricula(Aluno alunoMatricula) {
         this.alunoMatricula = alunoMatricula;
     }
 
-    public int getLivroId() {
+    public Livro getLivroId() {
         return livroId;
     }
 
-    public void setLivroId(int livroId) {
+    public void setLivroId(Livro livroId) {
         this.livroId = livroId;
     }
 
@@ -85,4 +85,3 @@ public class Emprestimo {
     }
 
 }
-
