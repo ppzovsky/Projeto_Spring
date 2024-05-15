@@ -1,12 +1,15 @@
 package org.serratec.projetogrupo1.controller;
 
 import org.serratec.projetogrupo1.entities.Emprestimo;
+import org.serratec.projetogrupo1.entities.Livro;
 import org.serratec.projetogrupo1.services.EmprestimoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -50,5 +53,11 @@ public class EmprestimoController {
             emprestimoService.delete(id);
             return new ResponseEntity<>(emprestimo, HttpStatus.OK);
         }
+    }
+   
+    
+    @GetMapping("/livros-disponiveis")
+    public ResponseEntity<List<Livro>> findAllDisponiveis() {
+        return new ResponseEntity<>(emprestimoService.findAllDisponiveis(), HttpStatus.OK);
     }
 }
