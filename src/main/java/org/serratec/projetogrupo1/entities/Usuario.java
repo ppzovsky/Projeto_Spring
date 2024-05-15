@@ -26,7 +26,6 @@ public class Usuario {
     private String senha;
     @ManyToOne
     @JoinColumn(name="perfil_id")
-    @JsonIgnore
     private Perfil perfil;
 
     public Usuario(Integer userId, String nome, String email, String senha) {

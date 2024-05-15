@@ -3,6 +3,7 @@ package org.serratec.projetogrupo1.entities;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -38,6 +39,7 @@ public class Aluno {
 	private String cidade;
 
 	@OneToMany(mappedBy = "alunoMatricula")
+	@JsonIgnore
 	private List<Emprestimo> emprestimos;
 
 	public Aluno() {

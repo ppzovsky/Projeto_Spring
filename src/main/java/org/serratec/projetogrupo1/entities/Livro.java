@@ -25,10 +25,10 @@ public class Livro {
 	
 	@ManyToOne
     @JoinColumn(name="editora_id")
-	@JsonIgnore
     private Editora editora;
 
 	@OneToMany(mappedBy = "livroId")
+	@JsonIgnore
 	private List<Emprestimo> emprestimos;
 	
 	public Livro() {
@@ -74,8 +74,8 @@ public class Livro {
 		this.codigoIsbn = codigoIsbn;
 	}
 
-	public Editora getEditora() {
-		return editora;
+	public String getEditora() {
+		return editora.getNome();
 	}
 
 	public void setEditora(Editora editora) {

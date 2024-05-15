@@ -44,16 +44,16 @@ public class Emprestimo {
         this.idEmprestimo = idEmprestimo;
     }
 
-    public Aluno getAlunoMatricula() {
-        return alunoMatricula;
+    public String getAlunoMatricula() {
+        return alunoMatricula.getNome();
     }
 
     public void setAlunoMatricula(Aluno alunoMatricula) {
         this.alunoMatricula = alunoMatricula;
     }
 
-    public Livro getLivroId() {
-        return livroId;
+    public String getLivroId() {
+        return livroId.getNomeLivro();
     }
 
     public void setLivroId(Livro livroId) {

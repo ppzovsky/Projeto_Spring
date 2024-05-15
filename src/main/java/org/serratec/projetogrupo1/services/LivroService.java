@@ -40,11 +40,6 @@ public class LivroService {
         }
         return null;
     }
-//
-//    public List<Emprestimo> findByPerfil(Integer id){
-//        Optional<Livro> perfil = livroRepository.findById(id);
-//        return perfil.get().getEmprestimo();
-//    }
 
     public long count (){
         return livroRepository.count();
