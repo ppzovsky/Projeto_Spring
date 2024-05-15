@@ -5,6 +5,7 @@ import org.serratec.projetogrupo1.repositories.EmprestimoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,4 +40,5 @@ public class EmprestimoService {
         }
         return null;
     }
+
 }

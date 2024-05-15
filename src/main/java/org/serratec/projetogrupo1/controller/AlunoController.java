@@ -3,6 +3,7 @@ package org.serratec.projetogrupo1.controller;
 import java.util.List;
 
 import org.serratec.projetogrupo1.entities.Aluno;
+import org.serratec.projetogrupo1.entities.Emprestimo;
 import org.serratec.projetogrupo1.services.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,5 +58,19 @@ public class AlunoController {
 			alunoService.delete(id);
 			return new ResponseEntity<>(aluno, HttpStatus.OK);
 		}
+	}
+
+	@GetMapping("/{id}/emprestimos")
+	public ResponseEntity<?> findEmprestimoByAlunoId(@PathVariable Integer id){
+		Aluno aluno = alunoService.findById(id);
+		List<Emprestimo> emprestimos = alunoService.findEmprestimoByAlunoId(id);
+
+		if (aluno == null){
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aluno não registrado!");
+		}
+		if (emprestimos == null){
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aluno sem registros de emprestimos!");
+		}
+		return new ResponseEntity<>(emprestimos, HttpStatus.OK);
 	}
 }

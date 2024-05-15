@@ -2,6 +2,7 @@ package org.serratec.projetogrupo1.controller;
 
 import java.util.List;
 
+import org.serratec.projetogrupo1.entities.Emprestimo;
 import org.serratec.projetogrupo1.entities.Livro;
 import org.serratec.projetogrupo1.services.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +60,17 @@ public class LivroController {
         }
     }
 
-//    @GetMapping("/{id}/{listusers}")
-//    public ResponseEntity<List<Emprestimo>> findByPerfil(@PathVariable Integer id){
-//        return new ResponseEntity<>(livroService.findByPerfil(id), HttpStatus.OK);
-//    }
+    @GetMapping("/{id}/emprestimos")
+    public ResponseEntity<?> findEmprestimoByLivroId(@PathVariable Integer id){
+        Livro livro = livroService.findById(id);
+        List<Emprestimo> emprestimos = livroService.findEmprestimoByLivroId(id);
+
+        if(livro == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Livro não registrado!");
+        }
+        if (emprestimos == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Livro sem registros de emprestimos!");
+        }
+        return new ResponseEntity<>(emprestimos, HttpStatus.OK);
+    }
 }

@@ -1,7 +1,11 @@
 package org.serratec.projetogrupo1.services;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.serratec.projetogrupo1.entities.Editora;
+import org.serratec.projetogrupo1.entities.Emprestimo;
+import org.serratec.projetogrupo1.entities.Livro;
 import org.serratec.projetogrupo1.repositories.EditoraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +42,11 @@ public class EditoraService {
             }
         }
         return null;
+    }
+
+    public List<Livro> findLivroByEditoraId(Integer id){
+        Optional<Editora> editora = editoraRepository.findById(id);
+        return editora.get().getLivros();
     }
 
     public long count (){

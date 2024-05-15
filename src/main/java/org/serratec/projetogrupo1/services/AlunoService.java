@@ -1,8 +1,10 @@
 package org.serratec.projetogrupo1.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.serratec.projetogrupo1.entities.Aluno;
+import org.serratec.projetogrupo1.entities.Emprestimo;
 import org.serratec.projetogrupo1.repositories.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +43,9 @@ public class AlunoService {
 			}
 		}
 		return null;
+	}
+	public List<Emprestimo> findEmprestimoByAlunoId(Integer id){
+		Optional<Aluno> aluno = alunoRepository.findById(id);
+		return aluno.get().getEmprestimos();
 	}
 }

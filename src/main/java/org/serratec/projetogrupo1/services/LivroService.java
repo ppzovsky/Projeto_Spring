@@ -1,7 +1,9 @@
 package org.serratec.projetogrupo1.services;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.serratec.projetogrupo1.entities.Emprestimo;
 import org.serratec.projetogrupo1.entities.Livro;
 import org.serratec.projetogrupo1.repositories.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,11 @@ public class LivroService {
             }
         }
         return null;
+    }
+
+    public List<Emprestimo> findEmprestimoByLivroId(Integer id){
+        Optional<Livro> livro = livroRepository.findById(id);
+        return livro.get().getEmprestimos();
     }
 
     public long count (){

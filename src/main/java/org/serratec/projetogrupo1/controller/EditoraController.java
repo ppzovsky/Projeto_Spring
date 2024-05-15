@@ -3,6 +3,8 @@ package org.serratec.projetogrupo1.controller;
 import java.util.List;
 
 import org.serratec.projetogrupo1.entities.Editora;
+import org.serratec.projetogrupo1.entities.Emprestimo;
+import org.serratec.projetogrupo1.entities.Livro;
 import org.serratec.projetogrupo1.services.EditoraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,8 +61,17 @@ public class EditoraController {
         }
     }
 
-//    @GetMapping("/{id}/{listusers}")
-//    public ResponseEntity<List<Livro>> findUsuarioByPerfilId(@PathVariable Integer id){
-//        return new ResponseEntity<>(editoraService.findUsuarioByPerfilId(id), HttpStatus.OK);
-//    }
+    @GetMapping("/{id}/livro")
+    public ResponseEntity<?> findLivroByEditoraId(@PathVariable Integer id){
+        Editora editora = editoraService.findById(id);
+        List<Livro> livros = editoraService.findLivroByEditoraId(id);
+
+        if (editora == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Editora não Registrada!");
+        }
+        if (livros == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Editora sem livros registrados!");
+        }
+        return new ResponseEntity<>(livros, HttpStatus.OK);
+    }
 }
