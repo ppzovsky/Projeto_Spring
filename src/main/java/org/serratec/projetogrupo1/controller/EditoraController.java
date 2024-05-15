@@ -3,7 +3,6 @@ package org.serratec.projetogrupo1.controller;
 import java.util.List;
 
 import org.serratec.projetogrupo1.entities.Editora;
-import org.serratec.projetogrupo1.entities.Emprestimo;
 import org.serratec.projetogrupo1.entities.Livro;
 import org.serratec.projetogrupo1.services.EditoraService;
 import org.springframework.beans.factory.annotation.Autowired;

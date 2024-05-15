@@ -7,57 +7,75 @@ import java.util.List;
 import org.serratec.projetogrupo1.entities.Emprestimo;
 import org.serratec.projetogrupo1.entities.Livro;
 import org.serratec.projetogrupo1.repositories.EmprestimoRepository;
+import org.serratec.projetogrupo1.repositories.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class EmprestimoService {
-    @Autowired
-    EmprestimoRepository emprestimoRepository;
-    public List<Emprestimo> findAll(){
-        return emprestimoRepository.findAll();
-    }
-    public Emprestimo findById(Integer id){
-        return emprestimoRepository.findById(id).orElse(null);
-    }
+	@Autowired
+	EmprestimoRepository emprestimoRepository;
 
-    public Emprestimo save(Emprestimo emprestimo){
-        return emprestimoRepository.save(emprestimo);
-    }
+	@Autowired
+	LivroRepository livroRepository;
 
-    public Emprestimo update(Emprestimo emprestimo){
-        return emprestimoRepository.save(emprestimo);
-    }
+	@Autowired
+	LivroService livroService;
 
-    public Emprestimo delete(Integer id){
-        if(emprestimoRepository.existsById(id) == true) {
-            Emprestimo excluir = emprestimoRepository.findById(id).orElse(null);
-            try {
-                emprestimoRepository.deleteById(id);
-                return excluir;
-            }catch (Exception e){
-                System.out.println(e);
-                return  null;
-            }
-        }
-        return null;
-    }
+	public List<Emprestimo> findAll() {
+		return emprestimoRepository.findAll();
+	}
 
+	public Emprestimo findById(Integer id) {
+		return emprestimoRepository.findById(id).orElse(null);
+	}
 
- // tentando fazer um método que mostra apenas os livros que estão disponíveis.
-    public List<Livro> findAllDisponiveis() {
-        List<Emprestimo> Emprestimos = emprestimoRepository.findAll();
-        List<Livro> LivrosDisponiveis = new ArrayList<>();
-        LocalDate hoje = LocalDate.now();
+	public Emprestimo save(Emprestimo emprestimo) {
+		return emprestimoRepository.save(emprestimo);
+	}
 
-        for (Emprestimo emprestimo : Emprestimos) {
-            if (emprestimo.getDataDevolucao().isAfter(hoje)) {
-                LivrosDisponiveis.add(emprestimo.getLivroIdEmprestimo());
-            }
-        }
-        return LivrosDisponiveis;
-    }
+	public Emprestimo update(Emprestimo emprestimo) {
+		return emprestimoRepository.save(emprestimo);
+	}
+
+	public Emprestimo delete(Integer id) {
+		if (emprestimoRepository.existsById(id) == true) {
+			Emprestimo excluir = emprestimoRepository.findById(id).orElse(null);
+			try {
+				emprestimoRepository.deleteById(id);
+				return excluir;
+			} catch (Exception e) {
+				System.out.println(e);
+				return null;
+			}
+		}
+		return null;
+	}
+
+	public List<Livro> findAllDisponiveis() {
+
+		List<Livro> LivrosDisponiveis = new ArrayList<>();
+		List<Livro> Livros = livroRepository.findAll();
+
+		for (Livro livro : Livros) {
+			if (livro.getEmprestimos() == null) {
+				LivrosDisponiveis.add(livro);
+			} else {
+				List<Emprestimo> Emprestimos = livroService.findEmprestimoByLivroId(livro.getLivroId());
+				boolean disponivel = true;
+
+				for (Emprestimo emprestimo : Emprestimos) {
+					if (emprestimo.getDataDevolucao().isAfter(LocalDate.now())) {
+						disponivel = false;
+					}
+				}
+
+				if (disponivel == true) {
+					LivrosDisponiveis.add(livro);
+				}
+			}
+		}
+		return LivrosDisponiveis;
+
+	}
 }

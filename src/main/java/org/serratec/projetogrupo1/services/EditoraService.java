@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.serratec.projetogrupo1.entities.Editora;
-import org.serratec.projetogrupo1.entities.Emprestimo;
 import org.serratec.projetogrupo1.entities.Livro;
 import org.serratec.projetogrupo1.repositories.EditoraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
