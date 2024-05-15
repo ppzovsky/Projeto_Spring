@@ -55,6 +55,10 @@ public class Emprestimo {
     public String getLivroId() {
         return livroId.getNomeLivro();
     }
+    
+    public Livro getLivroIdEmprestimo() {
+    	return livroId;
+    }
 
     public void setLivroId(Livro livroId) {
         this.livroId = livroId;

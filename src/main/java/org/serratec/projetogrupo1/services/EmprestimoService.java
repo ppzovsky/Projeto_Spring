@@ -1,11 +1,14 @@
 package org.serratec.projetogrupo1.services;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.serratec.projetogrupo1.entities.Emprestimo;
+import org.serratec.projetogrupo1.entities.Livro;
 import org.serratec.projetogrupo1.repositories.EmprestimoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class EmprestimoService {
@@ -38,5 +41,19 @@ public class EmprestimoService {
             }
         }
         return null;
+    }
+    
+ // tentando fazer um método que mostra apenas os livros que estão disponíveis.
+    public List<Livro> findAllDisponiveis() {
+        List<Emprestimo> Emprestimos = emprestimoRepository.findAll();
+        List<Livro> LivrosDisponiveis = new ArrayList<>();
+        LocalDate hoje = LocalDate.now();
+
+        for (Emprestimo emprestimo : Emprestimos) {
+            if (emprestimo.getDataDevolucao().isAfter(hoje)) {
+                LivrosDisponiveis.add(emprestimo.getLivroIdEmprestimo());
+            }
+        }
+        return LivrosDisponiveis;
     }
 }
