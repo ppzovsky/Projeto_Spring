@@ -18,7 +18,7 @@ public class PerfilService {
     }
 
     public Perfil findById(Integer id){
-        return perfilRepository.findById(id).orElse(null);
+        return perfilRepository.findById(id).get();
     }
 
     public Perfil save(Perfil perfil){

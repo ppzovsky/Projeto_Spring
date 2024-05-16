@@ -18,7 +18,7 @@ public class EditoraService {
         return editoraRepository.findAll();
     }
     public Editora findById(Integer id){
-        return editoraRepository.findById(id).orElse(null);
+        return editoraRepository.findById(id).get();
     }
     
     public Editora save(Editora editora){

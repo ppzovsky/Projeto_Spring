@@ -20,7 +20,7 @@ public class AlunoService {
 	}
 
 	public Aluno findById(Integer id) {
-		return alunoRepository.findById(id).orElse(null);
+		return alunoRepository.findById(id).get();
 	}
 
 	public Aluno save(Aluno aluno) {
