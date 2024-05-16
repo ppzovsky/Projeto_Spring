@@ -52,4 +52,4 @@ O objetivo deste projeto é criar uma API para controle de empréstimos de livro
   LinkedIn - (colocar link)
 
 - **João Pedro Soares De Brito**  
-  LinkedIn - (colocar link)
+  LinkedIn - https://www.linkedin.com/in/jo%C3%A3o-pedro-soares-164964236/
